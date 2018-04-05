@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import logging
+import logging, pymysql
 
 class S(BaseHTTPRequestHandler):
     def _set_response(self):
@@ -8,9 +8,7 @@ class S(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
-        self._set_response()
-        self.wfile.write("GET request for {}".format(self.path).encode('utf-8'))
+        get_dealer(self)
 
     def do_POST(self):
         content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
@@ -21,6 +19,27 @@ class S(BaseHTTPRequestHandler):
         self._set_response()
         self.wfile.write("POST request for {}".format(self.path).encode('utf-8'))
 
+def get_dealer(self):
+    logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
+    get_data()
+    self._set_response()
+    self.wfile.write(("CS411 GET request for {}"+get_data()).format(self.path).encode('utf-8'))
+
+def get_data():
+    mystr = "<!DOCTYPE html><html><head><title>Stage 3</title><meta charset=\"UTF-8\"/><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><meta http-equiv=\"Content-Type:application/json; charset=UTF-8\" /></head><body align='center'><h1>Getting team name from database!</h1><br><br>"
+    db = pymysql.connect("localhost","root","DBMasters<>123","ProjectDatabase")
+    cursor = db.cursor()
+    cursor.execute("SELECT firstname, lastname from team order by firstname asc")
+    data = cursor.fetchall()
+    mystr += "<table align='center' border=2><tr align='center'><th>First Name</th><th>Last Name</th></tr>"
+    for row in data:
+        mystr += "<tr align='center'><td>"+row[0]+ "</td><td> "+row[1]+"</td></tr>"
+
+    mystr += "</table></body></html>"
+    db.close()
+    return mystr
+
+     
 def run(server_class=HTTPServer, handler_class=S, port=8080):
     logging.basicConfig(level=logging.INFO)
     server_address = ('', port)
