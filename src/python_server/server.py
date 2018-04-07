@@ -21,7 +21,7 @@ class S(BaseHTTPRequestHandler):
 
 def get_dealer(self):
     logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
-    get_data()
+    #get_data()
     self._set_response()
     self.wfile.write(("CS411 GET request for {}"+get_data()).format(self.path).encode('utf-8'))
 
