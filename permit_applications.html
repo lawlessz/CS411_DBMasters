@@ -37,6 +37,29 @@
         });
     </script>
 
+    <!--script for submitting form data to python -->
+    <!--submitForm -->
+    <script>
+    function submitForm()
+    {
+       params="Some params";
+        $.ajax(
+        {
+            type: "POST",
+            url: "newPermitRecord.py",
+            dataType: "html",
+            success: function (html)
+            {
+              alert('Success!!');
+            },
+            error: function(request, ajaxOptions, thrownError)
+            {
+                alert('error!!');
+            }
+        });
+    }
+</script>
+
 </head>
 
 <body class="fixed-nav sticky-footer" id="page-top">
@@ -160,7 +183,7 @@
                         <textarea placeholder="Enter Description Here.." class="form-control"></textarea>
                     </div>
                     <!-- description row ends -->
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <button class="btn btn-primary" onclick="submitForm()">Submit</button>
                 </div>
                 <!--well div ends -->
             </div>
