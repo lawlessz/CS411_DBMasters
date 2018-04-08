@@ -12,19 +12,15 @@ function ProcessSimpleCgi()
     $.ajax(
     {
         type: "POST",
-        url: "cgi-bin/route1.py",
+        url: "/signup",
         data: params,
-        dataType: "html",
+        dataType: "json",
         success: function (html)
         {
-            var params = $(html).filter(function(){ return $(this).is('p') });
-            params.each(
-                function()
-                {
-                    var value = "<li>" + $(this).html() + "</li>";
-                    $("#paramsList").html( value );
-                }
-            );
+            console.log(typeof html);
+            console.log(html.length);
+            console.log(html);
+            $("#paramsList").html( JSON.stringify(html) );
         },
         error: function(request, ajaxOptions, thrownError)
         {
@@ -42,19 +38,12 @@ function ProcessSimpleCgi2()
     $.ajax(
     {
         type: "POST",
-        url: "/cgi-bin/route2.py",
+        url: "/new",
         data: params,
-        dataType: "html",
+        dataType: "text",
         success: function (html)
         {
-            var params = $(html).filter(function(){ return $(this).is('p') });
-            params.each(
-                function()
-                {
-                    var value = "<li>" + $(this).html() + "</li>";
-                    $("#paramsList").html( value );
-                }
-            );
+			window.location = "/new";
         },
         error: function(request, ajaxOptions, thrownError)
         {
@@ -75,6 +64,7 @@ function ProcessSimpleCgi2()
 
     <div><input type="button" value="Sum" onclick="ProcessSimpleCgi()"></div>
     <div><input type="button" value="Mult" onclick="ProcessSimpleCgi2()"></div>
+    <div><input type="submit" value="Move" action="/new" method="get"></div>
 
     <ul id="paramsList"></ul>
     <div id = "debug"></div>

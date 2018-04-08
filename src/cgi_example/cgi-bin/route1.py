@@ -4,23 +4,19 @@ import cgi
 import cgitb
 cgitb.enable()
 
+ret = ""
+
 def print_header():
-    print ("""Content-type: text/html\n
+    global ret
+    ret += """Content-type: text\n
     <!DOCTYPE html>
     <html>
-    <body>""")
+    <body>"""
 
 def print_close():
-    print ("""</body>
-    </html>""")
-
-def display_data(param1, param2):
-    print_header()
-    k = int(param1)+int(param2)
-    print ("<p>Param1 = " + param1 + "</p>")
-    print ("<p>Param2 = " + param2 + "</p>")
-    print ("<p>Soma = ", k, "</p>")
-    print_close()
+    global ret
+    ret += """</body>
+    </html>"""
 
 def display_error():
     print_header()
@@ -30,7 +26,15 @@ def display_error():
     print_close()
 
 def main():
+    global ret
     form = cgi.FieldStorage()
-    display_data(form["param1"].value, form["param2"].value)
+    #ret += "Content-type: text\n"
+    ret+="""
+    <!DOCTYPE html>
+    <html>
+    <body>"""
+    ret += "david"
+    #print_close()
+    print (ret)
 
 main()
