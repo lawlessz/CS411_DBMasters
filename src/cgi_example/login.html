@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Building Permits Manager</title>
+    <!-- Bootstrap core CSS-->
+    <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link href="resources/css/sb-admin.css" rel="stylesheet">
+</head>
+
+<body class="bg-dark">
+    <div class="container">
+        <div class="card card-login mx-auto mt-5">
+            <div class="card-header">Login</div>
+            <div class="card-body">
+                <!-- Form with validations -->
+                <form>
+                    <div class="form-group">
+                        <label for="inputEmail1">Email address</label>
+                        <label style="color: red">*</label>
+                        <input class="form-control" id="inputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+                    </div>
+                    <div id="invalidEmail" style="color: red" class="form-group"></div>
+                    <div class="form-group">
+                        <label for="inputPassword1">Password</label>
+                        <label style="color: red">*</label>
+                        <input class="form-control" id="inputPassword1" type="password" placeholder="Password" required>
+                    </div>
+                    <div id="invalidPassword" class="form-group" style="color: red"></div>
+
+                    <div class="dropdown form-group">
+                        <select id="inputRole" required>
+                            <option value="">Select Role</option>
+                            <option value="user">User</option>
+                            <option value="contractor">Contractor</option>
+                            <option value="inspector">Inspector</option>
+                        </select>
+                        <label style="color: red">*</label>
+                    </div>
+                    <div id="invalidRole" class="form-group" style="color: red"></div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox"> Remember Password</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="reset" onclick="validateForm()">Login</button>
+                </form>
+                <div class="text-center">
+                    <a class="d-block small mt-3" href="register_user.html">Register an Account</a>
+                    <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="resources/jquery/jquery.min.js"></script>
+    <script src="resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="resources/jquery-easing/jquery.easing.min.js"></script>
+    <script>
+        //To make dropdown select an option
+        $('.dropdown-toggle').dropdown();
+        $('#divSelectRole li').on('click', function () {
+            $('#dropdown_title').html($(this).find('a').html());
+        });
+
+        //Form validation
+        function validateForm() {
+            var email = document.getElementById("inputEmail1");
+            var password = document.getElementById("inputPassword1");
+            var role = document.getElementById("inputRole");
+            var validFlag = true;
+            if (!email.checkValidity()) {
+                document.getElementById("invalidEmail").innerHTML = "Please enter a valid email address.";
+                validFlag = false;
+            } else {
+                document.getElementById("invalidEmail").innerHTML = "";
+            }
+            if (!password.checkValidity()) {
+                document.getElementById("invalidPassword").innerHTML = "Please enter a valid password.";
+                validFlag = false;
+            } else {
+                document.getElementById("invalidPassword").innerHTML = "";
+            }
+            if (!role.checkValidity()) {
+                document.getElementById("invalidRole").innerHTML = "Please select a role.";
+                validFlag = false;
+            } else {
+                document.getElementById("invalidRole").innerHTML = "";
+            }
+            if (validFlag) {
+                window.location = "dashboard_page.html";
+            }
+            return false;
+            // form.classList.add('was-validated');
+        }
+
+    </script>
+    </form>
+</body>
+
+</html>
