@@ -42,21 +42,42 @@
     <script>
     function submitForm()
     {
-       params="Some params";
+        var applicant_name = $("#applicant_name").val();
+        var action_type = $("#action_type").val();
+        var category = $("#category").val();
+        var description = $("#description").val();
+        var work_type = $("#work_type").val();
+
+        var data = {
+            applicant_name: applicant_name,
+            action_type: action_type,
+            category: category,
+            description: description,
+            work_type: work_type
+        };
+
+        createPermit(data);
+    }
+
+    function createPermit(data)
+    {
         $.ajax(
-        {
-            type: "POST",
-            url: "newPermitRecord.py",
-            dataType: "html",
-            success: function (html)
             {
-              alert('Success!!');
-            },
-            error: function(request, ajaxOptions, thrownError)
-            {
-                alert('error!!');
-            }
-        });
+                type: "POST",
+                url: "/createPermit",
+                data: JSON.stringify({"data":data}),
+                contentType: "application/json",
+                dataType: "json",
+                success: function (res)
+                {
+                    console.log(res);
+                    window.location  = "tables.html"
+                },
+                error: function(request, ajaxOptions, thrownError)
+                {
+                    console.log(request.responseText)
+                }
+            });
     }
 </script>
 
@@ -67,130 +88,58 @@
     <div id="includeNavBar"></div>
     <!-- end of nav bar -->
     <!-- actual new permit form -->
-    <form>
-        <div class="content-wrapper">
-            <div class="container-fluid">
-                <div class="col-lg-12 well">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-4 form-group">
-                                    <label>Applicant Name</label>
-                                    <input type="text" name="applicant_name" class="form-control">
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <label>Contractor Name</label>
-                                    <input type="text" name="contractor_name" class="form-control">
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <label>Permit Type</label>
-                                    <select class="form-control" id="permitType">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="col-lg-12 well">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Applicant Name</label>
+                                <input type="text" id="applicant_name" class="form-control">
+                            </div>
+                            <div class="col-sm-4 form-group">
+                                    <label>Action Type</label>
+                                    <input type="text" class="form-control" id="action_type">
+                            </div>
+                            <div class="form-group">
+                                    <label>Category</label>
+                                    <select class="form-control" id="category">
                                         <option>Select</option>
                                         <option>Construction</option>
                                         <option>Demolition</option>
                                         <option>Site Development</option>
                                     </select>
-                                    <!-- <input type="text" class="form-control"> -->
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- row 1 ends -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-4 form-group">
-                                    <label>Work Type</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <label>Action Type</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <label>Category</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- row 2 ends -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-4 form-group">
-                                    <label>Value</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <label>Status</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <label>Application Date</label>
-                                    <input id="datepicker" class="form-control" />
-                                    <script>
-                                        $('#datepicker').datepicker({
-                                            uiLibrary: 'bootstrap4'
-                                        });
-                                        val = $('#datepicker').val();
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- row 3 ends -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-4 form-group">
-                                    <label>Address Line 1</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <label>Address Line 2</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <label>Address Line 3</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- row 4 ends -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-4 form-group">
-                                    <label>State</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <label>City</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <label>Zip</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- row 4 ends -->
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea placeholder="Enter Description Here.." class="form-control"></textarea>
-                    </div>
-                    <!-- description row ends -->
-                    <button class="btn btn-primary" onclick="submitForm()">Submit</button>
                 </div>
-                <!--well div ends -->
+                <!-- row 1 ends -->
+                <!-- row 2 ends -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">                                
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea margin-left="10%" cols="100" rows="3" placeholder="Enter Description Here.." class="form-control" id="description"></textarea>
+                            </div>  
+                        <div class="form-group">
+                            <label>Work Type</label>
+                            <input type="text" class="form-control" id="work_type">
+                        </div> 
+                    </div>
+                </div>
+                <!-- row 3 ends -->
+                <!-- row 4 ends -->
+                <!-- row 4 ends -->
+                <!-- description row ends -->
+                <button class="btn btn-primary" onclick="submitForm()">Add</button>
             </div>
-            <!--container ends -->
+            <!--well div ends -->
         </div>
-        <!-- content wrapper ends -->
-    </form>
+        <!--container ends -->
+    </div>
+    <!-- content wrapper ends -->
 </body>
 
 </html>

@@ -59,10 +59,19 @@ def postResource():
 	cursor = db.cursor()
 	cursor.execute("delete from Permit where id_permit="+str(id_permit))
 	db.commit()
-
-
-
 	return {"result": "something"}
+
+@bottle.post('/createPermit')
+def createResource():
+	data = request.json['data']
+	db = pymysql.connect("localhost","root","DBMasters<>123","ProjectDatabase")
+	cursor = db.cursor()
+	cursor.execute("insert into Permit(applicant_name, action_type, category, desecription, work_type) values ('"+data['applicant_name']+"', '"+data['action_type']+"', '"+data['category']+"', '"+data['description']+"', '"+data['work_type']+"')")
+	db.commit()
+	return {"result": "created"}
+
+
+	
 	
 bottle.debug(True) 
 bottle.run(host='localhost', port=8080)
