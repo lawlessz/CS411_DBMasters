@@ -1,0 +1,25 @@
+- WinSCP - ssh client
+
+- MySQL putty
+	Default port: 3306
+	Default user: root
+	mysql -u root -p
+	pass: DBMasters<>123
+	use ProjectDatabase
+	select id_permit, applicant_name from Permit limit 3;
+	
+- Tunneling -> MobaXterm 
+	CS411_DBMasters\docs\"MobaXterm tunneling.png"	
+	
+- Heidi (DBEaver is better)
+
+- GIT and GitHub
+	TortoiseGIT
+	https://github.com/allanpvieira/CS411_DBMasters.git
+	
+- Python code
+	Simple server (bottle framework)
+	
+- Show ajax
+	
+- apache http
