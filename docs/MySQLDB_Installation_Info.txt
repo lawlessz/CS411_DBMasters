@@ -1,0 +1,36 @@
+*********************************************************************************************************************************************************
+My SQL db:
+got the instructions here : https://www.if-not-true-then-false.com/2010/install-mysql-on-fedora-centos-red-hat-rhel/
+1. installed the mysql yum repository:-
+yum localinstall https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+
+2. install mysql 5.7.20 :- (latest currently)
+keep a watch on it coz it asks you "ok or not" a couple of times
+
+3. After it installs start the service using:
+systemctl start mysqld.service
+
+4. Get the default root password:- Imp 
+grep 'A temporary password is generated for root@localhost' /var/log/mysqld.log |tail -1
+default root password::::  QDRw<>DiX4oz
+
+5.To login to mysql database type:
+ mysql -u root -p
+ root password: QDRw<>DiX4oz  (or whatever the grep command gives)
+this should give the mysql prompt
+
+6. to change the default password for the root:
+ (1) Login to the mysql prompt with root and default password
+ (2) in the mysql prompt type in :: ALTER USER CURRENT_USER IDENTIFIED BY '<new password>' PASSWORD EXPIRE; 
+ (I have currently set it to DBMasters<>123)
+ (3) exit to quite mysql
+ 
+
+So currently the user is : root
+password is              : DBMasters<>123
+
+have also created a database named : ProjectDatabase; 
+ 
+Good guide to mysql commands:
+https://dev.mysql.com/doc/refman/5.7/en/alter-user.html#alter-user-password-management
+https://gist.github.com/hofmannsven/9164408
