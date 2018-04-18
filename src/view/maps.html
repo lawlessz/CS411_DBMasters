@@ -9,13 +9,13 @@
   <meta name="author" content="">
   <title>Placeholder for all types of charts</title>
   <!-- Bootstrap core CSS-->
-  <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
-  <link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Page level plugin CSS-->
-  <link href="resources/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="/resources/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
-  <link href="resources/css/sb-admin.css" rel="stylesheet">
+  <link href="/resources/css/sb-admin.css" rel="stylesheet">
   <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -29,30 +29,30 @@
         padding: 0;
       }
   </style>
+  <!-- Bootstrap core JavaScript-->
+  <script src="/resources/jquery/jquery.min.js"></script>
+  <script src="/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="/resources/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Page level plugin JavaScript-->
+  <script src="/resources/datatables/jquery.dataTables.js"></script>
+  <script src="/resources/datatables/dataTables.bootstrap4.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="/resources/js/sb-admin.min.js"></script>
+  <!-- Custom scripts for this page-->
+  <script src="/resources/js/sb-admin-datatables.min.js"></script>
+   <!-- script for loading the navigation panels -->
+   <script> 
+    $(function () {
+      $("#includeNavBar").load("dashboard_page.html");
+    });
+  </script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Nav bar-->
   <div id="includeNavBar"></div>
   <!-- end of nav bar -->
-  <!-- Bootstrap core JavaScript-->
-  <script src="resources/jquery/jquery.min.js"></script>
-  <script src="resources/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Core plugin JavaScript-->
-  <script src="resources/jquery-easing/jquery.easing.min.js"></script>
-  <!-- Page level plugin JavaScript-->
-  <script src="resources/datatables/jquery.dataTables.js"></script>
-  <script src="resources/datatables/dataTables.bootstrap4.js"></script>
-  <!-- Custom scripts for all pages-->
-  <script src="resources/js/sb-admin.min.js"></script>
-  <!-- Custom scripts for this page-->
-  <script src="resources/js/sb-admin-datatables.min.js"></script>
-  <!-- script for loading the navigation panels -->
-  <script> 
-    $(function () {
-      $("#includeNavBar").load("dashboard_page.html");
-    });
-  </script>
   <div id="map"></div>
   <script>
     var map;

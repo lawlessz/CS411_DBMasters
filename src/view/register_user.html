@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Register New User</title>
+    <!-- Bootstrap core CSS-->
+    <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link href="/resources/css/sb-admin.css" rel="stylesheet">
+    <!-- Bootstrap core JavaScript-->
+    <script src="/resources/jquery/jquery.min.js"></script>
+    <script src="/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="/resources/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/js/loginModule.js"></script>
+</head>
+
+<body class="bg-dark">
+    <div class="container">
+        <div class="card card-login mx-auto mt-5">
+            <div class="card-header">Login</div>
+            <div class="card-body">
+                <!-- Form with validations -->
+                <form>
+                    <div class="form-group" id="resultMessage"></div>
+                    <div class="form-group">
+                        <label for="inputEmail">Email address</label>
+                        <label style="color: red">*</label>
+                        <input class="form-control" id="inputEmail" type="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputName">UserName</label>
+                        <label style="color: red">*</label>
+                        <input class="form-control" id="inputName" type="text" placeholder="Enter user name">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        <label style="color: red">*</label>
+                        <input class="form-control" id="inputPassword" type="password" placeholder="Password" required>
+                    </div>
+
+                    <div class="dropdown form-group">
+                        <!-- Values loaded from the DB-->
+                        <select id="inputRole" required></select>
+                        <label style="color: red">*</label>
+                    </div>
+
+                    <button class="btn btn-primary" type="button" onclick=registerUser()>Register</button>
+
+                    <div class="text-center">
+                        <a class="d-block small mt-3" id ="loginLink">Login</a>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        //To make dropdown select an option
+        $('.dropdown-toggle').dropdown();
+        $('#divSelectRole li').on('click', function () {
+            $('#dropdown_title').html($(this).find('a').html());
+        });
+
+    </script>
+    </form>
+</body>
+
+</html>
