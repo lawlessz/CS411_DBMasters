@@ -1,0 +1,12 @@
+Project Folder Structure:-
+1. All the code related files are inside the src folder
+2. src has 3 folders in it:
+ (1) js :: All the javascript files related to the html files are in here.
+ (2) resources :: All the bootstrap and related js files are in here.Plugins need to be put in here.
+ (3) view :: These are all the html files related to the project
+3. The src also has the python files.
+     - The main python file is the bottle_server.py through which the bottle server runs.
+	 - We need to make a separate python for each module to run. eg: login module (everything related to login)
+	 - the bottle_server file should be used only for navigation.
+	 
+	 
