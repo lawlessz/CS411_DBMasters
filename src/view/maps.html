@@ -7,42 +7,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Placeholder for all types of charts</title>
-  <!-- Bootstrap core CSS-->
+  <title>Data Visualizations</title>
+  <!--CSS-->
   <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom fonts for this template-->
   <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <!-- Page level plugin CSS-->
   <link href="/resources/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-  <!-- Custom styles for this template-->
   <link href="/resources/css/sb-admin.css" rel="stylesheet">
   <style>
-      /* Always set the map height explicitly to define the size of the div
+    /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+
+    #map {
+      height: 100%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
   </style>
-  <!-- Bootstrap core JavaScript-->
+  <!--JS-->
   <script src="/resources/jquery/jquery.min.js"></script>
   <script src="/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Core plugin JavaScript-->
   <script src="/resources/jquery-easing/jquery.easing.min.js"></script>
-  <!-- Page level plugin JavaScript-->
-  <script src="/resources/datatables/jquery.dataTables.js"></script>
-  <script src="/resources/datatables/dataTables.bootstrap4.js"></script>
-  <!-- Custom scripts for all pages-->
+  <!-- <script src="/resources/datatables/jquery.dataTables.js"></script> -->
+  <!-- <script src="/resources/datatables/dataTables.bootstrap4.js"></script> -->
   <script src="/resources/js/sb-admin.min.js"></script>
-  <!-- Custom scripts for this page-->
-  <script src="/resources/js/sb-admin-datatables.min.js"></script>
-   <!-- script for loading the navigation panels -->
-   <script> 
+  <!-- <script src="/resources/js/sb-admin-datatables.min.js"></script> -->
+  <!-- script for loading the navigation panels -->
+  <script> 
     $(function () {
       $("#includeNavBar").load("dashboard_page.html");
     });
@@ -58,13 +55,13 @@
     var map;
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 47.608013, lng: -122.335167},
+        center: { lat: 47.608013, lng: -122.335167 },
         zoom: 13
       });
     }
   </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3ALJ_wj0RwsMAUWVrB9n1qwUSYTnA2Wc&callback=initMap"
-async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3ALJ_wj0RwsMAUWVrB9n1qwUSYTnA2Wc&callback=initMap" async
+    defer></script>
   </div>
 </body>
 

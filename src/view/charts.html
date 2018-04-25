@@ -8,41 +8,48 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>Placeholder for all types of charts</title>
-  <!-- Bootstrap core CSS-->
+  <!--CSS-->
   <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom fonts for this template-->
   <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <!-- Page level plugin CSS-->
   <link href="/resources/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-  <!-- Custom styles for this template-->
   <link href="/resources/css/sb-admin.css" rel="stylesheet">
+  <!--JS-->
+  <script src="/resources/jquery/jquery.min.js"></script>
+  <script src="/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/resources/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/resources/datatables/jquery.dataTables.js"></script>
+  <script src="/resources/datatables/dataTables.bootstrap4.js"></script>
+  <script src="/resources/js/sb-admin.min.js"></script>
+  <script src="/resources/js/sb-admin-datatables.min.js"></script>
+  <script src="/resources/data-visualization/plotly-latest.min.js"></script>
+  <script src="/resources/data-visualization/numeric.min.js"></script>
+  <script src="/js/chartsModule.js"></script>
+  <script> 
+    $(function () {
+      $("#includeNavBar").load("dashboard_page.html");
+    });
+  </script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-               <!-- Nav bar-->
-    <div id="includeNavBar"></div>
-    <!-- end of nav bar -->
-              <div class="content-wrapper">
-                  <label>Placeholder for all visualizations.</label>
-              </div> <!-- content wrapper ends -->
-                  <!-- Bootstrap core JavaScript-->
-                  <script src="/resources/jquery/jquery.min.js"></script>
-                  <script src="/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
-                  <!-- Core plugin JavaScript-->
-                  <script src="/resources/jquery-easing/jquery.easing.min.js"></script>
-                  <!-- Page level plugin JavaScript-->
-                  <script src="/resources/datatables/jquery.dataTables.js"></script>
-                  <script src="/resources/datatables/dataTables.bootstrap4.js"></script>
-                  <!-- Custom scripts for all pages-->
-                  <script src="/resources/js/sb-admin.min.js"></script>
-                  <!-- Custom scripts for this page-->
-                  <script src="/resources/js/sb-admin-datatables.min.js"></script>
-                  <script> 
-                      $(function(){
-                        $("#includeNavBar").load("dashboard_page.html"); 
-                      });
-                      </script>
-                </div>
-        </body>
+  <!-- Nav bar-->
+  <div id="includeNavBar"></div>
+  <!-- end of nav bar -->
+  <div class="content-wrapper">
+    <div class="form-group">
+      <button id="barGraphButton" class="btn btn-success col-md-2" type="button" onclick="drawBarGraph()">Bar Graph</button>
+      <button id="pieChartButton" class="btn btn-success col-md-2" type="button" onclick="drawPieChart()">Pie Charts</button>
+      <button id="lineChartButton" class="btn btn-success col-md-2" type="button" onclick="drawLineChart()">Line Charts</button>
+      <button id="scatterPlotButton" class="btn btn-success col-md-2" type="button" onclick="drawScatterPlot()">Scatter Plots</button>
+      
+    </div>
+    <!-- Div for plotting the graphs-->
+    <div id="myDiv">
+    </div>
+  </div>
+  <!-- content wrapper ends -->
+
+  </div>
+</body>
 
 </html>

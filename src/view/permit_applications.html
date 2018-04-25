@@ -8,78 +8,63 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Placeholder for all types of charts</title>
-    <!-- Bootstrap core CSS-->
+    <!--CSS-->
     <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom fonts for this template-->
     <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- Page level plugin CSS-->
     <link href="/resources/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <!-- Custom styles for this template-->
     <link href="/resources/css/sb-admin.css" rel="stylesheet">
-    <!-- jquery -->
+    <link href="/resources/date-picker/gijgo.min.css" rel="stylesheet" type="text/css">
+    <!--JS-->
     <script src="/resources/jquery/jquery.min.js"></script>
-
     <script src="/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
     <script src="/resources/jquery-easing/jquery.easing.min.js"></script>
     <script src="/resources/datatables/dataTables.bootstrap4.js"></script>
-    <!-- Custom scripts for all pages-->
     <script src="/resources/js/sb-admin.min.js"></script>
-
-    <!--date picker files-->
     <script src="/resources/date-picker/gijgo.min.js"></script>
-    <link href="/resources/date-picker/gijgo.min.css" rel="stylesheet" type="text/css">
-    <!-- date-picker files end -->
     <!-- script for loading the navigation panels -->
     <script> 
         $(function () {
             $("#includeNavBar").load("dashboard_page.html");
         });
     </script>
-
-    <!--script for submitting form data to python -->
     <!--submitForm -->
     <script>
-    function submitForm()
-    {
-        var applicant_name = $("#applicant_name").val();
-        var action_type = $("#action_type").val();
-        var category = $("#category").val();
-        var description = $("#description").val();
-        var work_type = $("#work_type").val();
+        function submitForm() {
+            var applicant_name = $("#applicant_name").val();
+            var action_type = $("#action_type").val();
+            var category = $("#category").val();
+            var description = $("#description").val();
+            var work_type = $("#work_type").val();
 
-        var data = {
-            applicant_name: applicant_name,
-            action_type: action_type,
-            category: category,
-            description: description,
-            work_type: work_type
-        };
+            var data = {
+                applicant_name: applicant_name,
+                action_type: action_type,
+                category: category,
+                description: description,
+                work_type: work_type
+            };
 
-        createPermit(data);
-    }
+            createPermit(data);
+        }
 
-    function createPermit(data)
-    {
-        $.ajax(
-            {
-                type: "POST",
-                url: "/createPermit",
-                data: JSON.stringify({"data":data}),
-                contentType: "application/json",
-                dataType: "json",
-                success: function (res)
+        function createPermit(data) {
+            $.ajax(
                 {
-                    console.log(res);
-                    window.location  = "tables.html"
-                },
-                error: function(request, ajaxOptions, thrownError)
-                {
-                    console.log(request.responseText)
-                }
-            });
-    }
-</script>
+                    type: "POST",
+                    url: "/createPermit",
+                    data: JSON.stringify({ "data": data }),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (res) {
+                        console.log(res);
+                        window.location = "tables.html"
+                    },
+                    error: function (request, ajaxOptions, thrownError) {
+                        console.log(request.responseText)
+                    }
+                });
+        }
+    </script>
 
 </head>
 
@@ -99,47 +84,41 @@
                                 <input type="text" id="applicant_name" class="form-control">
                             </div>
                             <div class="col-sm-4 form-group">
-                                    <label>Action Type</label>
-                                    <input type="text" class="form-control" id="action_type">
+                                <label>Action Type</label>
+                                <input type="text" class="form-control" id="action_type">
                             </div>
                             <div class="form-group">
-                                    <label>Category</label>
-                                    <select class="form-control" id="category">
-                                        <option>Select</option>
-                                        <option>Construction</option>
-                                        <option>Demolition</option>
-                                        <option>Site Development</option>
-                                    </select>
+                                <label>Category</label>
+                                <select class="form-control" id="category">
+                                    <option>Select</option>
+                                    <option>Construction</option>
+                                    <option>Demolition</option>
+                                    <option>Site Development</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- row 1 ends -->
-                <!-- row 2 ends -->
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="row">                                
+                        <div class="row">
                             <div class="form-group">
                                 <label>Description</label>
                                 <textarea margin-left="10%" cols="100" rows="3" placeholder="Enter Description Here.." class="form-control" id="description"></textarea>
-                            </div>  
-                        <div class="form-group">
-                            <label>Work Type</label>
-                            <input type="text" class="form-control" id="work_type">
-                        </div> 
+                            </div>
+                            <div class="form-group">
+                                <label>Work Type</label>
+                                <input type="text" class="form-control" id="work_type">
+                            </div>
+                        </div>
                     </div>
+                    <button class="btn btn-primary" onclick="submitForm()">Add</button>
                 </div>
-                <!-- row 3 ends -->
-                <!-- row 4 ends -->
-                <!-- row 4 ends -->
-                <!-- description row ends -->
-                <button class="btn btn-primary" onclick="submitForm()">Add</button>
+                <!--well div ends -->
             </div>
-            <!--well div ends -->
+            <!--container ends -->
         </div>
-        <!--container ends -->
-    </div>
-    <!-- content wrapper ends -->
+        <!-- content wrapper ends -->
 </body>
 
 </html>

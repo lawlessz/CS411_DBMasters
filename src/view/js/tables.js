@@ -75,6 +75,17 @@ $(document).ready(function ()
         });
 });
 
+function exportDatatoExcel(){
+		$("#dataTable").table2excel({			
+			exclude: ".noExl",
+			name: "Developer data",
+			filename: "Permit_data",
+			fileext: ".xls",		
+			exclude_img: true,
+			exclude_links: true,
+			exclude_inputs: true			
+		}); 
+}
 
 function deletePermit(id)
 {

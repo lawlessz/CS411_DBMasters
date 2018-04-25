@@ -81,10 +81,10 @@ function doLogin(inputUser, password, role) {
                 //Username-password does not match
                 if (res != undefined && res.user != undefined && res.user.length >= 0) {
                     //Check email or user name
-                    if ((res.user[0][2] == inputUser && res.user[0][3] == password) || (res.user[0][1] == inputUser && res.user[0][3] == password)) {
+                    if ((res.user[0][2] == inputUser && res.user[0][3] == password && res.user[0][4] == role) || (res.user[0][1] == inputUser && res.user[0][3] == password && res.user[0][4] == role)) {
                         window.location = "maps.html"
                     } else {
-                        document.getElementById("incorrectUser").innerHTML = "Username and password combination don't match!";
+                        document.getElementById("incorrectUser").innerHTML = "Username,password and role combination don't match!";
                     }
                 }
             },
@@ -137,3 +137,33 @@ function registerUser() {
 
         });
 } //register User ends
+
+function forgotPassword(){
+    var inputData = document.getElementById("inputUser")
+    var newPassword = document.getElementById("newPassword")
+    $.ajax(
+        {
+            type: "POST",
+            url: "/forgotPassword",
+            data:JSON.stringify(
+                {"user" : inputData.value,
+                 "new_password" : newPassword.value
+                }),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (res)
+            {
+                if (res != undefined && res.hasOwnProperty('success')) {
+                    document.getElementById("resultMessage").innerHTML = "Password reset successfully.Please login with new password"
+                    document.getElementById("resultMessage").style.color = "blue"
+                    document.getElementById('loginLink').href = "login.html";
+                }else if (res != undefined && res.hasOwnProperty('error')){
+                    document.getElementById("resultMessage").innerHTML = res.error
+                    document.getElementById("resultMessage").style.color = "red"
+                }
+            },
+            error: function (request,ajaxOptions,thrownError){
+                 console.log(request.responseText)
+            }
+        });
+}//forgot password ends

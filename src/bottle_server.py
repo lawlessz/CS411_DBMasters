@@ -11,6 +11,8 @@ import os
 import pymysql
 import simplejson as json
 import loginModule as loginMod
+#Files for sending emails
+import smtplib
 
 path = os.path.abspath(__file__)
 dir_path = os.path.dirname(path)
@@ -33,7 +35,6 @@ def edit_page():
 	if id_edit == 0:
 		return bottle.redirect("/maps.html")
 	return bottle.template("view/edit_application")
-
 
 #ajax handlers
 
@@ -130,6 +131,13 @@ def performRegistration():
 	data = request.json
 	# Navigating to loginModule.py
 	return loginMod.registerUser(data)
+
+@bottle.post('/forgotPassword')
+def resetPassword():
+    print('Navigating to reset Password')
+    data = request.json
+    return loginMod.resetPassword(data)
+
 
 
 bottle.debug(True) 
