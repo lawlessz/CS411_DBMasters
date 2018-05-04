@@ -117,17 +117,17 @@ function registerUser() {
             success: function (res) {
                 if (res != undefined && res.hasOwnProperty('result')) {
                     if (res.result > 0) {
-                        document.getElementById("resultMessage").innerHTML = "User Registered successfully"
-                        document.getElementById("resultMessage").style.color = "blue"
+                        document.getElementById("resultMessage").innerHTML = "User Registered successfully";
+                        document.getElementById("resultMessage").style.color = "blue";
                         document.getElementById('loginLink').href = "login.html";
                     } else {
-                        document.getElementById("resultMessage").innerHTML = "Some error occurred.Please try again"
-                        document.getElementById("resultMessage").style.color = "red"
+                        document.getElementById("resultMessage").innerHTML = "Some error occurred.Please try again";
+                        document.getElementById("resultMessage").style.color = "red";
                     }
 
                 } else if (res != undefined && res.hasOwnProperty('error')) {
-                    document.getElementById("resultMessage").innerHTML = res.error
-                    document.getElementById("resultMessage").style.color = "red"
+                    document.getElementById("resultMessage").innerHTML = res.error;
+                    document.getElementById("resultMessage").style.color = "red";
                 }
             },
             error: function (request, ajaxOptions, thrownError) {

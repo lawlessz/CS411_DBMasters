@@ -36,16 +36,66 @@
   <div id="includeNavBar"></div>
   <!-- end of nav bar -->
   <div class="content-wrapper">
-    <div class="form-group">
-      <button id="barGraphButton" class="btn btn-success col-md-2" type="button" onclick="drawBarGraph()">Bar Graph</button>
-      <button id="pieChartButton" class="btn btn-success col-md-2" type="button" onclick="drawPieChart()">Pie Charts</button>
-      <button id="lineChartButton" class="btn btn-success col-md-2" type="button" onclick="drawLineChart()">Line Charts</button>
-      <button id="scatterPlotButton" class="btn btn-success col-md-2" type="button" onclick="drawScatterPlot()">Scatter Plots</button>
-      
+    <div class="container">
+      <div class="col-md-3" style="float:left;">
+        <!--X-axis for horizontal bars and y for vertical bar graphs-->
+        <label style="font-weight: bold;">Select Column Name:</label>
+        <select id="graphX" name="graphoptions" size="10">
+          <option value="Application/Permit Number">Application/Permit Number</option>
+          <option value="Permit Type">Permit Type</option>
+          <option value="Address">Address</option>
+          <option value="Description">Description</option>
+          <option value="Category">Category</option>
+          <option value="Action Type">Action Type</option>
+          <option value="Work Type">Work Type</option>
+          <option value="Value">Value</option>
+          <option value="Applicant Name">Applicant Name</option>
+          <option value="Application Date">Application Date</option>
+          <option value="Issue Date">Issue Date</option>
+          <option value="Final Date">Final Date</option>
+          <option value="Expiration Date">Expiration Date</option>
+          <option value="Status">Status</option>
+          <option value="Contractor">Contractor</option>
+          <option value="Permit and Complaint Status">Permit and Complaint Status</option>
+          <option value="Master Use Permit">Master Use Permit</option>
+          <option value="Latitude">Latitude</option>
+          <option value="Longitude">Longitude</option>
+          <option value="Location">Location</option>
+        </select>
+        <!--This are numeric values to be displayed. Values should match the db table column name-->
+        <div>
+          <label style="font-weight: bold;">Measure</label>
+        </div>
+        <div>
+          <select id="graphY" class="col-md-5" style="display:inline;">
+            <option value="none">Select One</option>
+            <option value="Value">Value</option>
+            <option value="rowCount">Count of Rows</option>
+          </select>
+          <select id="valueType" class="col-md-5" style="display:inline;">
+            <option value="none">Select One</option>
+            <option value="max">Max</option>
+            <option value="avg">Avg</option>
+            <option value="mean">Mean</option>
+            <option value="median">Median</option>
+          </select>
+        </div>
+         <br/>
+        <button class="btn btn-primary" onclick="setOptionsforGraphs()" type="button">Set Options</button>
+      </div>
+      <div class="col-md-9" style="float:right;display:inline;">
+        <button id="barGraphButton" class="fa fa-bar-chart" type="button" onclick="drawBarGraph()"></button>
+        <button id="barGraphButton" class="fa fa-align-left" type="button" onclick="drawHorizontalBarGraph()"></button>
+        <button id="pieChartButton" class="fa fa-pie-chart" type="button" onclick="drawPieChart()"></button>
+        <button id="lineChartButton" class="fa fa-line-chart" type="button" onclick="drawLineChart()"></button>
+        <button id="scatterPlotButton" type="button" onclick="drawScatterPlot()"><img style="width:16px;" src="/resources/scatter.png"></button>
+        <!-- Div for plotting the graphs-->
+        <div id="myDiv" style="display:inline;">
+          <div id="errorDiv"></div>
+        </div>
+      </div> <!--graph plot div ends-->
     </div>
-    <!-- Div for plotting the graphs-->
-    <div id="myDiv">
-    </div>
+    <!--container div ends-->
   </div>
   <!-- content wrapper ends -->
 

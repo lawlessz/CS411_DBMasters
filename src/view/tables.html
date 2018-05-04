@@ -14,19 +14,17 @@
   <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="/resources/css/sb-admin.css" rel="stylesheet">
   <!-- JS Files-->
-  <script src="/resources/js/sb-admin.min.js"></script>
   <script src="/resources/jquery/jquery.min.js"></script>
   <script src="/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="/resources/bootstrap/js/bootstrap.bundle.min.js.map"></script>
   <script src="/resources/jquery-easing/jquery.easing.min.js"></script>
   <script src="/resources/datatables/jquery.dataTables.js"></script>
   <script src="/resources/datatables/dataTables.bootstrap4.js"></script>
+  <script src="/resources/js/sb-admin.min.js"></script>
   <script src="/resources/js/sb-admin-datatables.min.js"></script>
-  <!-- script for export to excel-->
-  <script src="/resources/exportTable/table2excel.js"></script>
   <!--script for all table related operations-->
   <script src="/js/tables.js"></script>
-
+  <script src="/js/permits.js"></script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -39,19 +37,34 @@
       <div class="card mb-3">
         <div class="card-header">
           <i class="fa fa-table"></i>Permit Data
-          <button class="btn btn-success col-md-2" style="float:right;" type="button" onclick="exportDatatoExcel()" id="export_to_excel">Export to excel</button>
+          <a href="#" id="exportLink" class="btn btn-primary" style="float:right;" onClick="javascript:fnExcelReport();">Export to Excel</a>
+          <button class="btn btn-primary"  onclick="visualizePage()" style="float:right;margin-right: 10px;">+Visualize</button>
         </div>
         <div class="card-body">
           <div id="dvData" class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Application/Permit Number</th>
-                  <th>Applicant Name</th>
-                  <th>Action Type</th>
-                  <th>Category</th>
-                  <th>Description</th>
-                  <th>Work Type</th>
+                    <th>Application/Permit Number</th>
+                    <th>Permit Type</th>
+                    <th>Address</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Action Type</th>
+                    <th>Work Type</th>
+                    <th>Value</th>
+                    <th>Applicant Name</th>
+                    <th>Application Date</th>
+                    <th>Issue Date</th>
+                    <th>Final Date</th>
+                    <th>Expiration Date</th>
+                    <th>Status</th>
+                    <th>Contractor</th>
+                    <th>Permit and Complaint Status</th>
+                    <th>Master Use Permit</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Location</th>
                 </tr>
               </thead>
               <tbody>
@@ -70,12 +83,12 @@
     <!-- /.container-fluid-->
   </div>
   <!-- /.content-wrapper ends-->
+
   <script> 
     $(function () {
       $("#includeNavBar").load("dashboard_page.html");
     });
   </script>
-
 </body>
 
 </html>
