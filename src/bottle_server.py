@@ -12,6 +12,7 @@ import pymysql
 import simplejson as json
 import loginModule as loginMod
 import permitsModule as permitsModule
+import charts as charts
 #Files for sending emails
 import smtplib
 
@@ -46,10 +47,9 @@ def get_permits():
 @bottle.post('/getPermitsWithFilter/')
 def get_permitsWithfilter():
 	filter2 = request.json['filter'].lower()
-	#db = pymysql.connect(host="localhost",port=3307,user="root",passwd="DBMasters<>123",db="ProjectDatabase")
 	db = pymysql.connect("localhost","root","DBMasters<>123","ProjectDatabase")
 	cursor = db.cursor()
-	cursor.execute("SELECT id_permit, applicant_name, action_type, category, desecription, work_type from Permit where lower(category) like '%"+filter2+"%'")
+	cursor.execute("SELECT * from Permits where lower(category) like '%"+filter2+"%'")
 	data = cursor.fetchall()
 	ret = {'permits':data}
 	print (id_edit)
@@ -103,6 +103,12 @@ def resetPassword():
     data = request.json
     return loginMod.resetPassword(data)
 
+
+@bottle.post('/plotGraphData')
+def getDataforGraph():
+	inputs=request.json['inputs']
+	print(str(inputs))
+	return charts.plotGraphData(inputs)
 
 
 bottle.debug(True) 
