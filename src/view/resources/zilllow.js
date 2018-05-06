@@ -1,6 +1,28 @@
 
 var mysql = require('mysql');
 
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "DBMasters<>123"
+});
+
+/*
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
+*/
+con.connect(function(err) {
+  if (err) throw err;
+  con.query("SELECT address FROM Permits", function (err, result, fields) {
+    console.log(rows[0].Field);
+    if (err) throw err;
+    console.log(result);
+  });
+});
+
 function testAPI(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -35,6 +57,5 @@ function testAPI(){
         console.log(xhttp.responseXML);
     console.dirxml(xhttp.responseXML);
     console.dir(xhttp.responseXML);
-    //console.log(xhttp.responseXML);
 
 }
