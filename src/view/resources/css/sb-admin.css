@@ -476,3 +476,12 @@ footer.sticky-footer {
     width: calc(100% - 55px);
   }
 }
+
+.dropdown-menu {
+	z-index: 100;
+}
+
+#graphX{
+	z-index: 100;
+
+}

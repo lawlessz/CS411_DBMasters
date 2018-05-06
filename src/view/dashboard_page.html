@@ -22,6 +22,14 @@
   <script src="/resources/datatables/dataTables.bootstrap4.js"></script>
   <script src="/resources/js/sb-admin.min.js"></script>
   <script src="/resources/js/sb-admin-datatables.min.js"></script>
+  <script src="content/js/jquery.min.js"></script>
+  <script src="content/js/bootstrap.min.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -118,14 +126,48 @@
           <form class="form-inline my-2 my-lg-0 mr-lg-2">
             <div class="input-group">
               <input class="form-control" type="text" placeholder="Search for...">
+                  <div class="dropdown">
+                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="listUpdate();" onmouseover="listUpdate()">
+                Pick Column
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="drop" onmouseover="listUpdate()">
+        <select id="graphX" name="graphoptions" size="10">
+                <option value= '{"full":"Application/Permit", "db":"permit_id"}'>ApplicationPermit Number</option>
+                <option value= '{"full":"Permit Type", "db":"permit_type"}'>Permit Type</option>
+                <option value= '{"full":"Address", "db":"address"}'>Address</option>
+                <option value= '{"full":"Description", "db":"description"}' selected>Description</option>
+                <option value= '{"full":"Category", "db":"category"}'>Category</option>
+                <option value= '{"full":"Action Type", "db":"action_type"}'>Action Type</option>
+                <option value= '{"full":"Work Type", "db":"work_type"}'>Work Type</option>
+                <option value= '{"full":"Value", "db":"value"}'>Value</option>
+                <option value= '{"full":"Applicant Name", "db":"applicant_name"}'>Applicant Name</option>
+                <option value= '{"full":"Application Date", "db":"application_date"}'>Application Date</option>
+                <option value= '{"full":"Issue Date", "db":"issue_date"}'>Issue Date</option>
+                <option value= '{"full":"Final Date", "db":"final_date"}'>Final Date</option>
+                <option value= '{"full":"Expiration Date", "db":"expiration_date"}'>Expiration Date</option>
+                <option value= '{"full":"Status", "db":"status"}'>Status</option>
+                <option value= '{"full":"Contractor", "db":"contractor"}'>Contractor</option>
+                <option value= '{"full":"Permit and Complaint Status", "db":"permit_and_complaint_status"}'>Permit and Complaint Status</option>
+                <option value= '{"full":"Master Use Permit", "db":"master_use_permit"}'>Master Use Permit</option>
+                <option value= '{"full":"Latitude", "db":"latitude"}'>Latitude</option>
+                <option value= '{"full":"Longitude", "db":"longitude"}'>Longitude</option>
+                <option value= '{"full":"Location", "db":"location"}'>Location</option>
+        </select>
+              </div>
+            </div>
               <span class="input-group-append">
-                <button class="btn btn-primary" type="button">
+
+                <button class="btn btn-primary" type="button" onclick="listUpdate()">
                   <i class="fa fa-search"></i>
                 </button>
               </span>
+
             </div>
+
           </form>
+
         </li>
+
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>

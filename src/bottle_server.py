@@ -47,9 +47,11 @@ def get_permits():
 @bottle.post('/getPermitsWithFilter/')
 def get_permitsWithfilter():
 	filter2 = request.json['filter'].lower()
+	filter1 = request.json['column'].lower()
+	#input column = request.
 	db = pymysql.connect("localhost","root","DBMasters<>123","ProjectDatabase")
 	cursor = db.cursor()
-	cursor.execute("SELECT * from Permits where lower(category) like '%"+filter2+"%'")
+	cursor.execute("SELECT * from Permits where '%"+filter1+"%' like '%"+filter2+"%'")
 	data = cursor.fetchall()
 	ret = {'permits':data}
 	print (id_edit)
