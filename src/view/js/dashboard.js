@@ -1,3 +1,4 @@
 function listUpdate(){
-	var x = document.getElementById('dropdownMenuButton').innerHTML = JSON.parse(document.getElementById('graphX').value).full;
+	var x = document.getElementById('dropdownMenuButton').innerHTML = document.getElementById('graphX2').options[document.getElementById('graphX2').selectedIndex].text;
+
 }

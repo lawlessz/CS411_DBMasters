@@ -137,7 +137,8 @@ function searchCategory() {
         {
             type: "POST",
             url: "/getPermitsWithFilter",
-            data: JSON.stringify({ "filter": $("#search_cat").val(), "column": JSON.parse($("#graphX").val()).db}),
+            //data: JSON.stringify({ "filter": $("#search_cat").val(), "column": JSON.parse($("#graphX").val()).db}),
+            data: JSON.stringify({ "filter": $("#search_cat").val(), "column": JSON.parse($("#graphX2").val()}),
             dataType: "json",
             contentType: "application/json",
             success: function (res) {
