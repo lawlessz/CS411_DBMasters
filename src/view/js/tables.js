@@ -126,6 +126,47 @@ function deletePermit(id) {
         });
 }
 
+function estimateTime(id) {
+    $.ajax(
+        {
+            type: "POST",
+            url: "/getEstimate",
+            data: JSON.stringify({ "id_permit": id }),
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+                if(res.variables==0)
+                {
+                    alert('Calculating...\n\n Unable to estimate time, too few entries match the data specification');
+                }
+                else if(res.variables==1)
+                {
+                    //permit_type=b.permit_type and a.category=b.category and a.work_type=b.work_type and a.action_type=b.action_type
+                    alert('Calculating...\n\n Estimated time for the application: '+res.avg+' Days \n Number of variables taken into account: '+res.variables+'\n Variable: Permit Type');
+                }
+                else if(res.variables==2)
+                {
+                    //permit_type=b.permit_type and a.category=b.category and a.work_type=b.work_type and a.action_type=b.action_type
+                    alert('Calculating...\n\n Estimated time for the application: '+res.avg+' Days \n Number of variables taken into account: '+res.variables+'\n Variables: Permit Type and Category');
+                }
+                else if(res.variables==3)
+                {
+                    //permit_type=b.permit_type and a.category=b.category and a.work_type=b.work_type and a.action_type=b.action_type
+                    alert('Calculating...\n\n Estimated time for the application: '+res.avg+' Days \n Number of variables taken into account: '+res.variables+'\n Variable: Permit Type, Category and Work type');
+                }
+                else if(res.variables==4)
+                {
+                    //permit_type=b.permit_type and a.category=b.category and a.work_type=b.work_type and a.action_type=b.action_type
+                    alert('Calculating...\n\n Estimated time for the application: '+res.avg+' Days \n Number of variables taken into account: '+res.variables+'\n Variable: Permit Type, Category, Work type and Action Type');
+                }               
+                
+            },
+            error: function (request, ajaxOptions, thrownError) {
+                console.log(request.responseText)
+            }
+        });
+}
+
 function editPermit(id) {
     //Calling permits data from permits.js
     console.log("I'm inside edit permits!!")
@@ -138,7 +179,10 @@ function searchCategory() {
             type: "POST",
             url: "/getPermitsWithFilter",
             //data: JSON.stringify({ "filter": $("#search_cat").val(), "column": JSON.parse($("#graphX").val()).db}),
-            data: JSON.stringify({ "filter": $("#search_cat").val(), "column": JSON.parse($("#graphX2").val()}),
+            data: JSON.stringify({ 
+                "filter": $("#mytext").val(), 
+                "column": $("#graphX2").val()
+            }),
             dataType: "json",
             contentType: "application/json",
             success: function (res) {
@@ -148,6 +192,7 @@ function searchCategory() {
                     "<tr>" +
                     "<th>Delete</th>" +
                     "<th>Edit</th>" +
+                    "<th>Estimate</th>" +
                     "<th>Application/Permit Number</th>" +
                     "<th>Permit Type</th>" +
                     "<th>Address</th>" +
@@ -174,8 +219,9 @@ function searchCategory() {
 
                 for (var i = 0; i < res.permits.length; i++) {
                     html += "<tr>";
-                    html += '<td><div><button id="delete_' + res.permits[i][0] + '" value="delete">delete</button></div></td>';
-                    html += '<td><div><button id="edit_' + res.permits[i][0] + '"" value="edit">edit</button></div></td>';
+                    html += '<td><div><button class="btn btn-primary" id="delete_' + res.permits[i][0] + '" value="delete">Delete</button></div></td>';
+                    html += '<td><div><button class="btn btn-primary" id="edit_' + res.permits[i][0] + '"" value="edit">Edit</button></div></td>';
+                    html += '<td><div><button class="btn btn-primary" id="est_' + res.permits[i][0] + '"" value="edit">Estimate</button></div></td>';
                     for (var k = 0; k < res.permits[i].length; k++) {
                         if (res.permits[i][k] != null) {
                             html += "<td>" + res.permits[i][k] + "</td>";
@@ -208,6 +254,15 @@ function searchCategory() {
                         $("#edit_" + id).on("click", function () {
                             console.log("edditing..." + id);
                             editPermit(id);
+                        });
+
+                    })(id);
+
+                    (function (id) {
+                        $("#est_" + id).on("click", function () {
+                            console.log("estimating..." + id);
+                            estimateTime(id);                            
+                            //editPermit(id); washere
                         });
 
                     })(id);

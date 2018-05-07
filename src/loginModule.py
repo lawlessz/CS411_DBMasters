@@ -21,7 +21,7 @@ from email.mime.text import MIMEText
 #Method is used for auto-population of user Types on the Logina nd Register user pages
 def getUserTypes():
     #db = pymysql.connect(host="localhost",port=3307,user="root",passwd="DBMasters<>123",db="ProjectDatabase")
-    db = pymysql.connect("localhost","root","DBMasters<>123","ProjectDatabase")
+    db = pymysql.connect("localhost","root","","ProjectDatabase")
     cursor = db.cursor()
     cursor.execute("select id_user_type,type_name from Access_level")
     data = cursor.fetchall()
@@ -31,7 +31,7 @@ def getUserTypes():
 def performLogin(data):
     print('Entering the Login method')
     print('I got:' + data['user'] + ' ' + data['password'] + ' ' + data['role'])
-    db = pymysql.connect("localhost","root","DBMasters<>123","ProjectDatabase")
+    db = pymysql.connect("localhost","root","","ProjectDatabase")
     cursor = db.cursor()
     # If user name or email has been passed
     if '@' in data['user']:
@@ -52,7 +52,7 @@ def performLogin(data):
 def registerUser(data):
     print('Entered the register user method')
     print('I got:' + data['email'] + ' ' + data['userName'] + ' ' + data['password'] + ' ' + data['role'])
-    db = pymysql.connect("localhost","root","DBMasters<>123","ProjectDatabase")
+    db = pymysql.connect("localhost","root","","ProjectDatabase")
     cursor = db.cursor()
     # First check for duplicates insertion
     rows_count = cursor.execute("select username,email from Users where username='" + data['userName']+"' or email='" + data['email']+"'")
@@ -75,7 +75,7 @@ def registerUser(data):
 #Updating db with new password if forgot password link is clicked. Also sends a mail to the user if update successful.
 def resetPassword(data):
     ret = {}
-    db = pymysql.connect("localhost","root","DBMasters<>123","ProjectDatabase")
+    db = pymysql.connect("localhost","root","","ProjectDatabase")
     cursor = db.cursor()
     if '@' in data['user']:
         rows_count = cursor.execute("select email,username from Users where email='" + data['user'] + "'")

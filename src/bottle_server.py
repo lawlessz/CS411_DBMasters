@@ -18,7 +18,9 @@ import smtplib
 
 path = os.path.abspath(__file__)
 dir_path = os.path.dirname(path)
-#global id_edit = 0
+
+global filter
+filter="where true"
 
 #servePages
 
@@ -42,19 +44,23 @@ def edit_page():
 
 @bottle.post('/getPermits')
 def get_permits():
-	return permitsModule.get_permits()
+	global filter
+	return permitsModule.get_permits(filter)
 
-@bottle.post('/getPermitsWithFilter/')
+@bottle.post('/getPermitsWithFilter')
 def get_permitsWithfilter():
-	filter2 = request.json['filter'].lower()
-	filter1 = request.json['column'].lower()
+	global filter
+	print("getPermitsWithFilter")
+	d = request.json
+	filter2 = d['filter'].lower()
+	filter1 = d['column'].lower()
 	#input column = request.
-	db = pymysql.connect("localhost","root","DBMasters<>123","ProjectDatabase")
+	db = pymysql.connect("localhost","root","","ProjectDatabase")
 	cursor = db.cursor()
-	cursor.execute("SELECT * from Permits where '%"+filter1+"%' like '%"+filter2+"%'")
+	cursor.execute("SELECT * from Permits where "+filter1+" like '%"+filter2+"%'")
+	filter = "where "+filter1+" like '%"+filter2+"%'"
 	data = cursor.fetchall()
 	ret = {'permits':data}
-	print (id_edit)
 	return ret
 
 	
@@ -80,6 +86,12 @@ def editPermitData():
 	params = request.json['data']
 	return permitsModule.editPermitData(params)
 
+@bottle.post('/getEstimate')
+def getEstimate():
+	params = request.json
+	print(params)
+	return permitsModule.estimateTime(str(params['id_permit']))
+
 @bottle.post('/getUserTypes')
 def getUserTypes():
     return loginMod.getUserTypes()
@@ -87,6 +99,8 @@ def getUserTypes():
 
 @bottle.post('/loginAction')
 def performLogin():
+	global filter
+	filter="where true"
 	print('Navigating to login Mod - perform login!!')
 	data = request.json
 	# Navigating to loginModule.py
@@ -108,9 +122,10 @@ def resetPassword():
 
 @bottle.post('/plotGraphData')
 def getDataforGraph():
+	global filter
 	inputs=request.json['inputs']
 	print(str(inputs))
-	return charts.plotGraphData(inputs)
+	return charts.plotGraphData(inputs, filter)
 
 
 bottle.debug(True) 

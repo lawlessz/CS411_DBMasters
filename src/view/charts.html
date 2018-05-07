@@ -41,26 +41,28 @@
         <!--X-axis for horizontal bars and y for vertical bar graphs-->
         <label style="font-weight: bold;">Select Column Name:</label>
         <select id="graphX" name="graphoptions" size="10">
-          <option value="Application/Permit Number">Application/Permit Number</option>
+          <!-- <option value="Application/Permit Number">Application/Permit Number</option> -->
           <option value="Permit Type">Permit Type</option>
-          <option value="Address">Address</option>
-          <option value="Description">Description</option>
+          <!-- <option value="Address">Address</option> -->
+          <!-- <option value="Description">Description</option> -->
           <option value="Category">Category</option>
           <option value="Action Type">Action Type</option>
           <option value="Work Type">Work Type</option>
-          <option value="Value">Value</option>
-          <option value="Applicant Name">Applicant Name</option>
-          <option value="Application Date">Application Date</option>
-          <option value="Issue Date">Issue Date</option>
-          <option value="Final Date">Final Date</option>
-          <option value="Expiration Date">Expiration Date</option>
+          <!-- <option value="Value">Value</option> -->
+          <!-- <option value="Applicant Name">Applicant Name</option> -->
+          <!-- <option value="Application Date">Application Date</option> -->
+          <!-- <option value="Issue Date">Issue Date</option> -->
+          <!-- <option value="Final Date">Final Date</option> -->
+          <!-- <option value="Expiration Date">Expiration Date</option> -->
           <option value="Status">Status</option>
           <option value="Contractor">Contractor</option>
-          <option value="Permit and Complaint Status">Permit and Complaint Status</option>
-          <option value="Master Use Permit">Master Use Permit</option>
-          <option value="Latitude">Latitude</option>
-          <option value="Longitude">Longitude</option>
-          <option value="Location">Location</option>
+          <option value="zillow1">Zillow - Estimate</option>
+          <option value="zillow2">Zillow - Last sold price</option>
+          <!-- <option value="Permit and Complaint Status">Permit and Complaint Status</option> -->
+          <!-- <option value="Master Use Permit">Master Use Permit</option> -->
+          <!-- <option value="Latitude">Latitude</option> -->
+          <!-- <option value="Longitude">Longitude</option> -->
+          <!-- <option value="Location">Location</option> -->
         </select>
         <!--This are numeric values to be displayed. Values should match the db table column name-->
         <div>
@@ -75,9 +77,8 @@
           <select id="valueType" class="col-md-5" style="display:inline;">
             <option value="none">Select One</option>
             <option value="max">Max</option>
+            <option value="max">Min</option>
             <option value="avg">Avg</option>
-            <option value="mean">Mean</option>
-            <option value="median">Median</option>
           </select>
         </div>
          <br/>

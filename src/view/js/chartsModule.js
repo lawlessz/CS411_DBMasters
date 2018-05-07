@@ -6,12 +6,17 @@ function setOptionsforGraphs() {
   graphX = document.getElementById("graphX").value;
   graphY = document.getElementById("graphY").value;
   measure = document.getElementById("valueType").value;
-  alert('I got: ' + graphX + ' ' + graphY + ' ' + measure);
+  //alert('I got: ' + graphX + ' ' + graphY + ' ' + measure);
+  //alert('Options set');
 }
 
 
 function drawBarGraph() {
+  setOptionsforGraphs();
+
   document.getElementById("errorDiv").innerHTML = "";
+  
+
   if (graphX != "" && graphY != "" && measure != "") {
       //map the options with the appropriate column name from the table
       var column_name =matchColumntoOptions(graphX);
@@ -40,6 +45,7 @@ function drawBarGraph() {
               type:'bar'
             }];
 
+            console.log('plotData', plotData);
             Plotly.newPlot('myDiv', plotData);
         },
         error: function (request, ajaxOptions, thrownError) {
@@ -54,6 +60,8 @@ function drawBarGraph() {
 }
 
 function drawHorizontalBarGraph() {
+  setOptionsforGraphs();
+
   document.getElementById("errorDiv").innerHTML = "";
   if (graphX != "" && graphY != "" && measure != "") {
     var column_name =matchColumntoOptions(graphX);
@@ -96,6 +104,10 @@ function drawHorizontalBarGraph() {
 }
 
 function drawPieChart() {
+  setOptionsforGraphs();
+
+  document.getElementById("errorDiv").innerHTML = "";
+
   if (graphX != "" && graphY != "" && measure != "") {
     var column_name =matchColumntoOptions(graphX);
       inputs={};
@@ -137,6 +149,8 @@ function drawPieChart() {
 }
 
 function drawLineChart() {
+  setOptionsforGraphs();
+
   document.getElementById("errorDiv").innerHTML = "";
   if (graphX != "" && graphY != "" && measure != "") {
     var column_name =matchColumntoOptions(graphX);
@@ -178,7 +192,10 @@ function drawLineChart() {
 }
 
 function drawScatterPlot() {
+  setOptionsforGraphs();
+
   document.getElementById("errorDiv").innerHTML = "";
+
   if (graphX != "" && graphY != "" && measure != "") {
     var column_name =matchColumntoOptions(graphX);
       inputs={};
@@ -263,6 +280,14 @@ function matchColumntoOptions(optionValue){
   }else if(optionValue == 'Location'){
     column_name ='location';
   }
+  else if(optionValue == 'zillow1'){
+    column_name ='zillow1';
+  }
+  else if(optionValue == 'zillow2'){
+    column_name ='zillow2';
+  }
+
+  console.log("columnnnnn nameee", column_name,optionValue);
   return column_name
 }
 
