@@ -16,6 +16,12 @@ import charts as charts
 #Files for sending emails
 import smtplib
 
+
+from socket import *
+
+sock=socket()
+sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+
 path = os.path.abspath(__file__)
 dir_path = os.path.dirname(path)
 
