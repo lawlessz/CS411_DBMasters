@@ -130,8 +130,7 @@ def getDataforGraph():
 
 
 bottle.debug(True) 
-application = bottle.default_app()
-from paste import httpserver
-httpserver.serve(application, host='0.0.0.0', port=80)
+#application = bottle.default_app()
+bottle.run(host='0.0.0.0', port=80)
 #bottle.run(host='localhost', port=8080)
 #bottle.run(host='localhost', port=8090)
