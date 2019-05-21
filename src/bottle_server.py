@@ -17,11 +17,6 @@ import charts as charts
 import smtplib
 
 
-from socket import *
-
-sock=socket()
-sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-
 path = os.path.abspath(__file__)
 dir_path = os.path.dirname(path)
 
