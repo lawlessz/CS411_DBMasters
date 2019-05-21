@@ -130,5 +130,6 @@ def getDataforGraph():
 
 bottle.debug(True) 
 #bottle.run(host='localhost', port=8080)
-bottle.run(host='0.0.0.0', port=80)
+#bottle.run(host='0.0.0.0', port=80)
+bottle.run(host='209.124.64.198', port=80)
 #bottle.run(host='localhost', port=8090)
